@@ -2,7 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 
-const pokemonRouters = require('./routes/pokemon.route')
+const routes = require('./routes')
 
 const app = express()
 
@@ -13,7 +13,7 @@ mongoose.connect('mongodb+srv://felipinas:pokedex123@cluster0.4cf5l.mongodb.net/
 
 app.use(cors());
 app.use(express.json());
-app.use('/api', pokemonRouters)
+app.use(routes)
 
 app.listen(3000, () => {
     console.log('Server is running in port 3000')
