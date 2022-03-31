@@ -59,9 +59,8 @@ module.exports = {
     delete: async (req, res) => {
         try {
             const { pokemon_id } = req.params;
-    
             const deletedPokemon = await Pokemon.findByIdAndDelete(pokemon_id);
-    
+            
             return res.status(200).send(deletedPokemon);
         } catch (error) {
             return res.status(400).send(error)
