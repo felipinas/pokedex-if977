@@ -2,8 +2,12 @@ import { Container } from './styles';
 import { api } from '../../services/api'
 
 import { toast } from 'react-toastify';
+import { EditPokemonModal } from '../EditPokemonModal';
+import { useState } from 'react';
 
 export const PokemonCard = ({id, name, hp, attack, power}) => {
+  const [isEditPokemonModalOpen, setIsEditPokemonModalOpen] = useState(false);
+
   const notifyError = () => toast.error("We couldn't remove that Pokemon :(!", {
     position: "top-right",
     autoClose: 5000,
@@ -12,7 +16,7 @@ export const PokemonCard = ({id, name, hp, attack, power}) => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    });
+  });
 
   const notifySucess = () => toast.success('Pokemon removed!', {
     position: "top-right",
@@ -22,7 +26,15 @@ export const PokemonCard = ({id, name, hp, attack, power}) => {
     pauseOnHover: true,
     draggable: true,
     progress: undefined,
-    });
+  });
+
+  const handleOpenEditPokemonModal = () => {
+    setIsEditPokemonModalOpen(true);
+  };
+
+  const handleCloseEditPokemonModal = () => {
+    setIsEditPokemonModalOpen(false);
+  };
 
   const handleDeletePokemon = async () => {
     try {
@@ -35,18 +47,30 @@ export const PokemonCard = ({id, name, hp, attack, power}) => {
   }
 
   return (
-    <Container>
-      <div>
-        <h1>{name}</h1>
-        <p>HP: {hp}</p>
-        <p>Attack: {attack}</p>
-        <p>Power: {power}</p>
-      </div>
+    <>
+      <Container>
+        <div>
+          <h1>{name}</h1>
+          <p>HP: {hp}</p>
+          <p>Attack: {attack}</p>
+          <p>Power: {power}</p>
+        </div>
 
-      <div>
-        <span onClick={handleDeletePokemon}>Delete Pokemon</span>
-        <span>Edit Pokemon</span>
-      </div>
-    </Container>
+        <div>
+          <span onClick={handleDeletePokemon}>Delete Pokemon</span>
+          <span onClick={handleOpenEditPokemonModal}>Edit Pokemon</span>
+        </div>
+      </Container>
+
+      <EditPokemonModal
+        isOpen={isEditPokemonModalOpen}
+        onRequestClose={handleCloseEditPokemonModal}
+        id={id}
+        name={name}
+        hp={hp}
+        attack={attack}
+        power={power}
+      />
+    </>
   );
 }

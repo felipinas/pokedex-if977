@@ -19,8 +19,6 @@ const typeColors = {
     normal: '#a4acaf',
 }
 
-/* const typesNeedTextWhite = ['fire', 'water', 'ice', 'poison', 'fighting'] */
-
 export const Container = styled.div`
     display: flex;
     flex-direction: column;

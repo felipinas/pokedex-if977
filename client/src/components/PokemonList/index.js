@@ -6,7 +6,6 @@ import { Container, Content } from './styles';
 export const PokemonList = () => {
   const [pokemonsData, setPokemonsData] = useState([]);
   const [offsetPokemons, setOffsetPokemons] = useState(0);
-  const [isPokemonsLoading, setIsPokemonsLoading] = useState(false);
 
   function capitalize(string) {
     return string.charAt(0).toUpperCase() + string.slice(1);

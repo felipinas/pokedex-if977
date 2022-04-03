@@ -1,17 +1,33 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 import { Container } from './styles';
 
 export const Header = () => {
   return (
       <Container>
-          <ul>
-                <li>
-                    <Link to="/">Pokemons</Link>
-                </li>
-                <li>
-                    <Link to="/my-pokemons">My Pokemons</Link>
-                </li>
-          </ul>
+          <nav>
+            <ul>
+                    <li>
+                        <NavLink
+                            to="/"
+                            style={({ isActive }) =>
+                                isActive ? { color: 'black' } : undefined
+                            }
+                        >
+                            Pokemons
+                        </NavLink>
+                    </li>
+                    <li>
+                        <NavLink
+                            to="/my-pokemons"
+                            style={({ isActive }) =>
+                                isActive ? { color: 'black' } : undefined
+                            }
+                        >
+                            My Pokemons
+                        </NavLink>
+                    </li>
+            </ul>
+          </nav>
       </Container>
   );
 }
